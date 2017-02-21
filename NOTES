@@ -10,6 +10,7 @@ LicIns
         Option for copyright name
         Option for #! prefix
         Option for signature after (c)
+        Option for Coding: utf-8
         Config file
         -t (--test) option outputs to a safe file name (filename.lictest)
     Make sure file isn't binary
