@@ -1,0 +1,19 @@
+LicIns
+    Insert a commented license header into a source file
+    Can create new files or edit files inline (automatic)
+    Python
+    Options
+        -l LICENSE - License to use
+            MIT/GPL/LGPL/BSD built in
+                setup.py installs in /usr/share
+            -f FILE option if using raw license text from file
+        Option for copyright name
+        Option for #! prefix
+        Option for signature after (c)
+        Config file
+        -t (--test) option outputs to a safe file name (filename.lictest)
+    Make sure file isn't binary
+    Check for license language before running
+    Leave first line if it starts with #!
+    As always, all libs! Program should be 3 lines and no code.
+
