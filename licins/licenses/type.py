@@ -20,19 +20,29 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+# import os
+
 class LicenseData:
     def __init__(self, options):
-        """Initialize a log parsing module"""
+        import os
+        """Initialize a license object"""
         self.name = ""
         self.desc = ""
         self.header = ""
         self.full = ""
         pass
 
-    def prep(self, options):
-        """Parse a log timestamp"""
+    def prep(self, instype = 'header', prefix = '', encoding = '', \
+            signature = ''):
+        """Prepare the license with comments, etc."""
         pass
 
-    def parse_entry(self, options):
-        """Parse a log entry"""
-        pass
+    def write(self, inputfile, printlicense):
+        """Insert the formatted license into a file"""
+        lines = os.popen(inputfile).readlines()
+        if lines[0].startswith('#!'): startline = 1
+        else: startline = 0
+        final = lines.insert(startline, printlicense)
+        output = open(inputfile, 'w')
+        output.write(final)
+        output.close()
