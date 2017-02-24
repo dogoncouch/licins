@@ -28,11 +28,11 @@ import string
 from optparse import OptionParser
 from optparse import OptionGroup
 
-class LogDissectCore:
+class LicInsCore:
 
     def __init__(self):
-        """Initialize logdissect job"""
-        self.input_file = ''
+        """Initialize license insert job"""
+        self.input_files = []
         self.instype_modules = {}
         self.prefix = ''
         self.encoding = ''
@@ -42,6 +42,8 @@ class LogDissectCore:
         self.option_parser = OptionParser(
                 usage = ("Usage: %prog [options]"),
                 version = "%prog" + str(__version__))
+        self.file_options = OptionGroup(self.option_parser, \
+                _("File options"))
         self.instype_options = OptionGroup(self.option_parser, \
                 _("Insert type options"))
         self.prefix_options = OptionGroup(self.option_parser, \
@@ -53,12 +55,20 @@ class LogDissectCore:
         self.sig_options = OptionGroup(self.option_parser, \
                 _("Signature options"))
     
+    # Load file:
+    def load_input(self, options):
+        """Load the specified inputs"""
+        for f in self.input_options:
+            fullpath = os.path.abspath(f)
+            log = LogData(source_full_path=fullpath)
+            self.data_set.append(log)
+
     def insert(self, instype = 'header', prefix = '', encoding = '', \
             cname = '', signature = ''):
         """Insert the header"""
         pass
 
-    def do_output(self, options):
+    def do_output(self, testmode = None):
         """Output to file"""
         pass
 
@@ -68,6 +78,10 @@ class LogDissectCore:
                 action="callback",
                 callback=self.list_instypes,
                 help=_("returns a list of available insert types"))
+        self.option_parser.add_option("-f", "--file",
+                action="store",
+                dest="file_list",
+                help=_("specifies target files"))
         self.option_parser.add_option("-t", "--type",
                 action="store",
                 dest="instype_list", default="header",
@@ -93,6 +107,7 @@ class LogDissectCore:
                 dest="signature",
                 help=_("sets a signature to follow the (C) name"))
         
+        self.option_parser.add_option_group(self.file_options)
         self.option_parser.add_option_group(self.instype_options)
         self.option_parser.add_option_group(self.prefix_options)
         self.option_parser.add_option_group(self.cname_options)
@@ -100,15 +115,7 @@ class LogDissectCore:
         self.option_parser.add_option_group(self.signature_options)
         self.options, args = self.option_parser.parse_args(sys.argv[1:])
 
-    # Load input files:
-    def load_inputs(self, options):
-        """Load the specified inputs"""
-        for f in self.input_options:
-            fullpath = os.path.abspath(f)
-            log = LogData(source_full_path=fullpath)
-            self.data_set.append(log)
-
-    # Parsing modules:
+    # Insert type modules:
     def list_instypes(self):
         """Return a list of available insert types"""
         print '==== Available insert types: ===='
