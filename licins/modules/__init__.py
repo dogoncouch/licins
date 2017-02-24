@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # MIT License
 # 
 # Copyright (c) 2017 Dan Persons <dpersonsdev@gmail.com>
@@ -22,3 +20,4 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+__instypes__ = ['header']

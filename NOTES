@@ -18,3 +18,14 @@ LicIns
     Leave first line if it starts with #!
     As always, all libs! Program should be 3 lines and no code.
 
+    Object for job
+    Object for stuff to insert
+        vars and methods for:
+            Comment syntax
+            #! line
+                if it already exists, ask to overwrite.
+            prefix
+            Copyright name
+            Signature after (c)
+            encoding: line
+
