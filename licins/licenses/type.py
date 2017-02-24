@@ -20,11 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# import os
+import os
 
-class LicenseData:
+class LicenseModule:
     def __init__(self, options):
-        import os
         """Initialize a license object"""
         self.name = ''
         self.desc = ''
@@ -37,22 +36,26 @@ class LicenseData:
         self.finalproduct = ''
         pass
 
-    def prep(self, instype = 'header', comment = '# ', cname = None, \
-            cyear = '2017', progdesc = None, prefix = None, \
+    def prep(self, instype = 'header', comment = '# ', cname = '', \
+            cyear = '', progdesc = None, prefix = None, \
             encoding = None, signature = ''):
         """Prepare the license with comments, etc."""
+        # To Do: replace default year with current year from os.
         if instype = 'header': work = self.header.split('\n')
         if instype = 'full': work = self.full.split('\n')
-        # Comment all of the lines
+        # Handle copyright name and optional signature line:
         for line in work:
-            line = comment + line
-        # Add all of the lines in reverse order:
-        if cname and signature:
-            copyright = self.copyrightpre + cname + '\n' + signature
-            work.insert(0, copyright)
+            if line.startswith(self.copyrightpre):
+                line = line + cyear + ' ' + cname
+                if signature:
+                    work.insert(line + 1, signature)
+        # Add all of the pre-copyright lines in reverse order:
         if progdesc: work.insert(0, progdesc)
         if encoding: work.insert(0, encoding)
         if prefix: work.insert(0, prefix)
+        # Add the comments
+        for line in work:
+            line = comment + line
         # Prepare the final product:
         self.finalproduct = '\n'.join(work)
 
