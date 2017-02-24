@@ -38,7 +38,8 @@ class LicenseData:
         pass
 
     def prep(self, instype = 'header', comment = '# ', cname = None, \
-            progdesc = None, prefix = None, encoding = None, signature = ''):
+            cyear = '2017', progdesc = None, prefix = None, \
+            encoding = None, signature = ''):
         """Prepare the license with comments, etc."""
         if instype = 'header': work = self.header.split('\n')
         if instype = 'full': work = self.full.split('\n')
