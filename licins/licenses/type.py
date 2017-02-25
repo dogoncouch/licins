@@ -50,7 +50,7 @@ class LicenseModule:
         nextline = 1
         for line in work:
             if line.startswith(self.copyrightpre):
-                line = line + cyear + ' ' + cname
+                line = str(line + cyear + ' ' + cname)
                 if signature:
                     work.insert(nextline, signature)
             nextline = nextline + 1
@@ -62,6 +62,9 @@ class LicenseModule:
         for line in work:
             line = str(str(comment) + str(line))
         # Prepare the final product:
+        # To Do: fix problem: work is not made up of strings.
+        # It's probably an option parsing problem, wrong thing
+        # is being sent to this function for various variables.
         work = " ".join(work)
         self.finalproduct = work
 
