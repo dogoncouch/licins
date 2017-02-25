@@ -38,26 +38,32 @@ class LicenseModule:
 
     def prep(self, instype = 'header', comment = '# ', cname = '', \
             cyear = '', progdesc = None, prefix = None, \
-            encoding = None, signature = ''):
+            encoding = None, signature = None):
         """Prepare the license with comments, etc."""
         # To Do: replace default year with current year from os.
-        if instype = 'header': work = self.header.split('\n')
-        if instype = 'full': work = self.full.split('\n')
+        # To Do: get rid of this next cheat line:
+        instype = 'header'
+        # if 'header' in instype: work = self.header.split('\n')
+        if instype == 'header': work = self.header.split('\n')
+        if instype == 'full': work = self.full.split('\n')
         # Handle copyright name and optional signature line:
+        nextline = 1
         for line in work:
             if line.startswith(self.copyrightpre):
                 line = line + cyear + ' ' + cname
                 if signature:
-                    work.insert(line + 1, signature)
+                    work.insert(nextline, signature)
+            nextline = nextline + 1
         # Add all of the pre-copyright lines in reverse order:
         if progdesc: work.insert(0, progdesc)
         if encoding: work.insert(0, encoding)
         if prefix: work.insert(0, prefix)
         # Add the comments
         for line in work:
-            line = comment + line
+            line = str(str(comment) + str(line))
         # Prepare the final product:
-        self.finalproduct = '\n'.join(work)
+        work = " ".join(work)
+        self.finalproduct = work
 
     def write(self, inputfile):
         """Insert the formatted license into a file"""

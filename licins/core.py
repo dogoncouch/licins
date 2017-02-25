@@ -28,37 +28,43 @@ import string
 from optparse import OptionParser
 from optparse import OptionGroup
 
+import licins.licenses
+from licins import __version__
+import gettext
+gettext.install('licins')
+
 class LicInsCore:
 
     def __init__(self):
         """Initialize license insert job"""
         self.input_files = []
-        self.instype_modules = ''
-        self.prefix = ''
-        self.encoding = ''
-        self.cname = ''
-        self.signature = ''
+        self.instype_modules = []
+        self.license_modules = {}
+        self.prefix = []
+        self.encoding = []
+        self.cname = []
+        self.signature = []
         self.options = None
         self.option_parser = OptionParser(
                 usage = ("Usage: %prog [options]"),
                 version = "%prog" + str(__version__))
-        self.file_options = OptionGroup(self.option_parser, \
+        self.file_options = OptionGroup(self.option_parser,
                 _("File options"))
-        self.instype_options = OptionGroup(self.option_parser, \
+        self.instype_options = OptionGroup(self.option_parser,
                 _("Insert type options"))
-        self.comment_options = OptionGroup(self.option_parser, \
+        self.comment_options = OptionGroup(self.option_parser,
                 _("Comment options"))
-        self.cname_options = OptionGroup(self.option_parser, \
+        self.cname_options = OptionGroup(self.option_parser,
                 _("Copyright name"))
-        self.license_options = OptionGroup(self.option_parser, \
+        self.license_options = OptionGroup(self.option_parser,
                 _("License options"))
-        self.prefix_options = OptionGroup(self.option_parser, \
+        self.prefix_options = OptionGroup(self.option_parser,
                 _("Prefix options"))
-        self.encoding_options = OptionGroup(self.option_parser, \
+        self.encoding_options = OptionGroup(self.option_parser,
                 _("Encoding options"))
-        self.cname_options = OptionGroup(self.option_parser, \
+        self.cname_options = OptionGroup(self.option_parser,
                 _("Copyright name options"))
-        self.sig_options = OptionGroup(self.option_parser, \
+        self.signature_options = OptionGroup(self.option_parser,
                 _("Signature options"))
     
 #     # Load file:
@@ -70,26 +76,6 @@ class LicInsCore:
 #             fullpath = os.path.abspath(f)
 #             ourmodule = 'licins.licenses.' + self.license_options[0]
             
-
-    def insert(self):
-        """Output the prepared header to files"""
-        self.load_input()
-        self.load_licenses()
-        self.load_instypes()
-        ourmodule = 'licins.licenses.' + self.license_options[0]
-        job = ourmodule.LicenseModule()
-        prefix = ' '.join(prefix)
-        encoding = ' '.join(encoding)
-        cname = ' '.join(cname)
-        signature = ' '.join(signature)
-        job.prep(instype = instype_options[0], \
-                comments = ' '.join(comment_options), \
-                cyear = '2017', progdesc = None, \
-                prefix = ' '.join(prefix_options), \
-                encoding = ' '.join(encoding_options), \
-                signature = ' '.join(signature_options))
-        for dest in self.file_options:
-            job.write(dest)
 
     def config_options(self):
         """Set config options"""
@@ -147,7 +133,41 @@ class LicInsCore:
         self.option_parser.add_option_group(self.encoding_options)
         self.option_parser.add_option_group(self.cname_options)
         self.option_parser.add_option_group(self.signature_options)
-        self.options, args = self.option_parser.parse_args(sys.argv[1:])
+        # self.options, args = self.option_parser.parse_args(sys.argv[1:])
+        self.options = self.option_parser.parse_args(sys.argv[1:])
+
+    def insert(self):
+        """Output the prepared header to files"""
+        # self.load_input()
+        self.load_licenses()
+        self.load_instypes()
+        # To Do: fix how we load our license module!
+        # ourmodule = 'licins.licenses.' + self.license_options[0]
+        # job = licins.licenses.mit.LicenseModule()
+        # ourmodule = 'licins.licenses.' + \
+        #         self.self.options.license_list
+        # ourmodule = 'licins.licenses.' + \
+        #         self.license_modules['mit']
+        # job = ourmodule.LicenseModule
+        ourmodule = self.license_modules['mit']
+        job = ourmodule
+        # job = self.license_modules['mit']()
+        prefix = ' '.join(self.prefix)
+        encoding = ' '.join(self.encoding)
+        cname = ' '.join(self.cname)
+        signature = ' '.join(self.signature)
+        job.prep(instype = str(self.instype_options), \
+                comment = self.comment_options, \
+                # comments = ' '.join(self.comment_options), \
+                cyear = '2017', progdesc = None, \
+                prefix = self.prefix_options, \
+                # prefix = ' '.join(self.prefix_options), \
+                encoding = self.encoding_options, \
+                # encoding = ' '.join(self.encoding_options), \
+                signature = self.signature_options)
+        # signature = ' '.join(self.signature_options))
+        for dest in self.file_options:
+            job.write(dest)
 
     # Insert type modules:
     def list_instypes(self):
@@ -155,13 +175,13 @@ class LicInsCore:
         print '==== Available insert types: ===='
         print
         print string.ljust('header', 16) + \
-                ': Adds a short license header (default')
+                ': Adds a short license header (default)'
         print string.ljust('full', 16) + \
-                ': Adds a full license (not recommended for code')
+                ': Adds a full license (not recommended for code'
 
-    def load_instypes(self, instype_modules):
+    def load_instypes(self):
         """Sets the insert type (header or full)"""
-        self.instype_modules = instype_options
+        self.instype_modules = self.instype_options
 
 #         for ins in sorted(self.instype_modules):
 #             print string.ljust(self.instype_modules[ins].name, 16) + \
@@ -185,15 +205,15 @@ class LicInsCore:
                     ': ' + self.license_modules[lic].desc
         sys.exit(0)
     
-    def load_licenses(self, license_modules):
+    def load_licenses(self):
         """Load license module(s)"""
-#         for lic in sorted(licins.licenses.__all__):
-#             self.license_modules[lic] = \
-#                     __import__('licins.licenses.' + lic, globals(), \
-#                     locals(), [licins]).LicenseModule(self.license_options)
+        for lic in sorted(licins.licenses.__all__):
+            self.license_modules[lic] = \
+                    __import__('licins.licenses.' + lic, globals(), \
+                    locals(), [licins]).LicenseModule(self.license_options)
 
-        self.license_module = __import__('licins.licenses.' + \
-                self.license_options[0])
+#         self.license_module = __import__('licins.licenses.' + \
+#                 self.license_options[0])
 
 if __name__ == "__main__":
     surgery = LicInsCore()

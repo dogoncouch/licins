@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 # import os
-from licinse.licenses.type import LicenseModule as TypeModule
+from licins.licenses.type import LicenseModule as TypeModule
 
 class LicenseModule(TypeModule):
     def __init__(self, options):
@@ -81,7 +81,7 @@ SOFTWARE.
         # What comes before your name on copyright line:
         self.copyrightpre = 'Copyright(c) '
         self.finalproduct = ''
-        pass
+        # pass
 
 #     def prep(self, options):
 #         """Prepare the license with comments, etc."""
