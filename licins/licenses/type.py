@@ -36,7 +36,7 @@ class LicenseModule:
         self.finalproduct = []
         pass
 
-    def prep(self, instype = 'header', comment = '## ', cname = '', \
+    def prep(self, lictype = 'header', comment = '## ', cname = '', \
             cyear = '', progdesc = None, prefix = None, \
             encoding = None, signature = None):
         """Prepare the license with comments, etc."""
@@ -45,7 +45,7 @@ class LicenseModule:
         #instype = 'header'
         # if 'header' in instype: work = self.header.split('\n')
         #if instype == 'header': work = self.header.split('\n')
-        if instype == 'full': initwork = self.full.split('\n')
+        if lictype == 'full': initwork = self.full.split('\n')
         else: initwork = self.header.split('\n')
         # Handle copyright name and optional signature line:
         work = []

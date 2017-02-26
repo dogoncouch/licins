@@ -29,8 +29,7 @@ class LicenseModule(TypeModule):
         self.name = 'mit'
         self.desc = 'The MIT License'
         # Short header version:
-        self.header = """
-MIT License
+        self.header = """MIT License
 
 Copyright (c) 
 
@@ -51,11 +50,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
 """
         # Full version:
-        self.full = """
-MIT License
+        self.full = """MIT License
 
 Copyright (c) 
 
@@ -76,16 +73,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
 """
         # What comes before your name on copyright line:
         self.copyrightpre = 'Copyright (c) '
-        # pass
-
-#     def prep(self, options):
-#         """Prepare the license with comments, etc."""
-#         pass
-
-#     def write(self, inputfile):
-#         """Insert the formatted license into a file"""
-#         pass
+        pass
