@@ -36,9 +36,9 @@ class LicenseModule:
         self.finalproduct = []
         pass
 
-    def prep(self, lictype = 'header', comment = '## ', cname = '', \
-            cyear = '', progdesc = None, prefix = None, \
-            encoding = None, signature = None):
+    def prep(self, lictype = 'header', comment = '## ', cname = '',
+            cyear = 2017, progdesc = None, prefix = None, encoding = None,
+            signature = None):
         """Prepare the license with comments, etc."""
         # To Do: replace default year with current year from os.
         if lictype == 'full': initwork = self.full.split('\n')
@@ -62,9 +62,14 @@ class LicenseModule:
 
     def write_final(self, inputfile):
         """Insert the formatted license into a file"""
+        if not os.path.isfile(inputfile):
+            touchit = open(inputfile, 'w')
+            touchit.write('\n')
+            touchit.close()
         lines = open(inputfile, 'r').readlines()
         # Ignore the first line if it starts with #!:
         startline = 0
+        if not lines: lines.append('\n')
         if lines[0]: 
             if lines[0].startswith('#!'): startline = 1
         # Insert our header:

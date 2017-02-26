@@ -25,6 +25,7 @@
 import os
 import sys
 import string
+import datetime
 from optparse import OptionParser
 from optparse import OptionGroup
 
@@ -113,16 +114,13 @@ class LicInsCore:
         ourencoding = self.options.encoding
         ourcname = self.options.cname
         oursignature = self.options.signature
+        ouryear = str(datetime.datetime.now().year)
         for job in self.args:
-            if not os.path.isfile(job):
-                touchit = open(job, 'w')
-                touchit.write('\n')
-                touchit.close()
             thisjob = self.license_modules[self.options.license]
-            thisjob.prep(lictype = ourlictype, comment = ourcomment, \
-                    cyear = '2017', progdesc = None, \
-                    prefix = ourprefix, encoding = ourencoding, \
-                    cname = ourcname, signature = oursignature)
+            thisjob.prep(lictype = ourlictype, comment = ourcomment,
+                    progdesc = None, prefix = ourprefix, 
+                    encoding = ourencoding, cname = ourcname, 
+                    cyear = ouryear, signature = oursignature)
             thisjob.write_final(job)
 
 if __name__ == "__main__":
