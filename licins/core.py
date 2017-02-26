@@ -152,21 +152,25 @@ class LicInsCore:
         # ourmodule = 'licins.licenses.' + \
         #         self.license_modules['mit']
         # job = ourmodule.LicenseModule
-        ourlicense = self.license_modules[self.options.license]
-        ourmodule = self.license_modules[ourlicense]
+        # ourlicense = self.license_modules[self.options.license]
+        # ourmodule = ourlicense.LicenseModule()
+        # ourmodule = self.license_modules[ourlicense]
+        # file_list = self.options.file_list
         file_list = self.options.file_list.split(',')
         ourinstype = self.options.instype
+        ourcomment = self.options.comment
         ourprefix = self.options.prefix
         ourencoding = self.options.encoding
         ourcname = self.options.cname
         oursignature = self.options.signature
-        jobs = []
         for job in file_list:
-            jobs[job] = ourmodule
-            jobs[job].prep(instype = ourinstype, comment = ourcomment, \
-                    cyear = '2017', progdesc = None, prefix = ourprefix, \
-                    encoding = ourencoding, signature = oursignature)
-            jobs[job].write(job)
+            if os.path.isfile(job):
+                thisjob = self.license_modules[self.options.license]
+                thisjob.prep(instype = ourinstype, comment = ourcomment, \
+                        cyear = '2017', progdesc = None, \
+                        prefix = ourprefix, encoding = ourencoding, \
+                        signature = oursignature)
+            thisjob.write(job)
             # output[job] = job
         # job = self.license_modules['mit']()
         # self.instype = self.instype_options[0]
