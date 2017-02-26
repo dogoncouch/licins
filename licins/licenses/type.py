@@ -23,7 +23,7 @@
 import os
 
 class LicenseModule:
-    def __init__(self, options):
+    def __init__(self):
         """Initialize a license object"""
         self.name = ''
         self.desc = ''
@@ -36,7 +36,7 @@ class LicenseModule:
         self.finalproduct = []
         pass
 
-    def prep(self, instype = 'header', comment = '# ', cname = '', \
+    def prep(self, instype = 'header', comment = '## ', cname = '', \
             cyear = '', progdesc = None, prefix = None, \
             encoding = None, signature = None):
         """Prepare the license with comments, etc."""

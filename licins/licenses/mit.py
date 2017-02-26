@@ -24,7 +24,7 @@
 from licins.licenses.type import LicenseModule as TypeModule
 
 class LicenseModule(TypeModule):
-    def __init__(self, options):
+    def __init__(self):
         """Initialize a license object"""
         self.name = 'mit'
         self.desc = 'The MIT License'
