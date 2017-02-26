@@ -79,7 +79,7 @@ SOFTWARE.
 
 """
         # What comes before your name on copyright line:
-        self.copyrightpre = 'Copyright(c) '
+        self.copyrightpre = 'Copyright (c) '
         # pass
 
 #     def prep(self, options):

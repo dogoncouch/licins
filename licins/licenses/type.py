@@ -51,7 +51,8 @@ class LicenseModule:
         nextline = 1
         for line in work:
             if line.startswith(self.copyrightpre):
-                line = str(line + cyear + ' ' + cname)
+                # To Do: Fix next line, it's the problem.
+                line = line + cyear + ' ' + cname
                 if signature:
                     work.insert(nextline, signature)
             nextline = nextline + 1
@@ -78,8 +79,9 @@ class LicenseModule:
         lines = open(inputfile, 'r').readlines()
         # Ignore the first line if it starts with #!:
         # To Do: add this back later!
-        if lines[0].startswith('#!'): startline = 1
-        else: startline = 0
+        startline = 0
+        if lines[0]: 
+            if lines[0].startswith('#!'): startline = 1
         # startline = 0
         # Read the file and add our prepared license:
         # final_list = []

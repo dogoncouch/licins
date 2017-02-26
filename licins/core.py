@@ -100,7 +100,7 @@ class LicInsCore:
         self.option_parser.add_option("-t", "--type",
                 action="store",
                 dest="instype", default="header",
-                help=_("sets the insert type"))
+                help=_("sets the license type (header|full, default=header)"))
         self.option_parser.add_option("-c", "--comment",
                 action="store",
                 dest="comment", default="# ",
