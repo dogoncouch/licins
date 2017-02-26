@@ -41,17 +41,12 @@ class LicenseModule:
             encoding = None, signature = None):
         """Prepare the license with comments, etc."""
         # To Do: replace default year with current year from os.
-        # To Do: get rid of this next cheat line:
-        #instype = 'header'
-        # if 'header' in instype: work = self.header.split('\n')
-        #if instype == 'header': work = self.header.split('\n')
         if lictype == 'full': initwork = self.full.split('\n')
         else: initwork = self.header.split('\n')
         # Handle copyright name and optional signature line:
         work = []
         for line in initwork:
             if line.startswith(self.copyrightpre):
-                # To Do: Fix next line, it's the problem.
                 work.append(line + cyear + ' ' + cname)
                 if signature:
                     work.append(signature)
@@ -61,37 +56,22 @@ class LicenseModule:
         if progdesc: work.insert(0, progdesc)
         if encoding: work.insert(0, encoding)
         if prefix: work.insert(0, prefix)
-        # Add the comments
-        # To Do: make this work.
-        # ['# ' + s + '\n' for s in work]
-        # for line in work:
-        #     line = '# ' + line + '\n'
-        # Prepare the final product:
-        # To Do: fix problem: work is not made up of strings.
-        # It's probably an option parsing problem, wrong thing
-        # is being sent to this function for various variables.
-        # work = " ".join(work)
+        # Prepare the final product with comments:
         self.finalproduct = [comment + line + '\n' for line in work]
         return 0
 
     def write_final(self, inputfile):
         """Insert the formatted license into a file"""
-        # lines = []
         lines = open(inputfile, 'r').readlines()
         # Ignore the first line if it starts with #!:
-        # To Do: add this back later!
         startline = 0
         if lines[0]: 
             if lines[0].startswith('#!'): startline = 1
-        # startline = 0
-        # Read the file and add our prepared license:
-        # final_list = []
-        # self.finalproduct = '\n'.join(self.finalproduct)
+        # Insert our header:
         lines[startline:startline] = self.finalproduct
-        # final_list = lines.insert(startline, self.finalproduct)
-        # final_list = lines.insert(startline, self.final_list)
+        # Convert output from list to string:
         final = ''.join(lines)
-        # Write the final result:
+        # Write to the file:
         output = open(inputfile, 'w')
         output.write(final)
         output.close()
