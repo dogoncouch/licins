@@ -170,7 +170,7 @@ class LicInsCore:
                         cyear = '2017', progdesc = None, \
                         prefix = ourprefix, encoding = ourencoding, \
                         signature = oursignature)
-            thisjob.write(job)
+                thisjob.write_final(job)
             # output[job] = job
         # job = self.license_modules['mit']()
         # self.instype = self.instype_options[0]

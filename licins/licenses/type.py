@@ -33,7 +33,7 @@ class LicenseModule:
         self.full = ''
         # What comes before your name on copyright line:
         self.copyrightpre = ''
-        self.finalproduct = ''
+        self.finalproduct = []
         pass
 
     def prep(self, instype = 'header', comment = '# ', cname = '', \
@@ -46,6 +46,7 @@ class LicenseModule:
         # if 'header' in instype: work = self.header.split('\n')
         if instype == 'header': work = self.header.split('\n')
         if instype == 'full': work = self.full.split('\n')
+        else: work = self.header.split('\n')
         # Handle copyright name and optional signature line:
         nextline = 1
         for line in work:
@@ -60,22 +61,29 @@ class LicenseModule:
         if prefix: work.insert(0, prefix)
         # Add the comments
         for line in work:
-            line = str(str(comment) + str(line))
+            line = str(comment + line)
         # Prepare the final product:
         # To Do: fix problem: work is not made up of strings.
         # It's probably an option parsing problem, wrong thing
         # is being sent to this function for various variables.
-        work = " ".join(work)
+        # work = " ".join(work)
         self.finalproduct = work
 
-    def write(self, inputfile):
+    def write_final(self, inputfile):
         """Insert the formatted license into a file"""
+        # lines = []
         lines = open(inputfile, 'r').readlines()
         # Ignore the first line if it starts with #!:
+        # To Do: add this back later!
         if lines[0].startswith('#!'): startline = 1
         else: startline = 0
+        # startline = 0
         # Read the file and add our prepared license:
-        final = lines.insert(startline, self.finalproduct)
+        # final_list = []
+        lines[startline:startline] = self.finalproduct
+        # final_list = lines.insert(startline, self.finalproduct)
+        # final_list = lines.insert(startline, self.final_list)
+        final = '\n'.join(lines)
         # Write the final result:
         output = open(inputfile, 'w')
         output.write(final)
