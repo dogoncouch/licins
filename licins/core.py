@@ -169,7 +169,7 @@ class LicInsCore:
                 thisjob.prep(instype = ourinstype, comment = ourcomment, \
                         cyear = '2017', progdesc = None, \
                         prefix = ourprefix, encoding = ourencoding, \
-                        signature = oursignature)
+                        cname = ourcname, signature = oursignature)
                 thisjob.write_final(job)
             # output[job] = job
         # job = self.license_modules['mit']()

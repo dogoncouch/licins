@@ -45,17 +45,18 @@ class LicenseModule:
         #instype = 'header'
         # if 'header' in instype: work = self.header.split('\n')
         #if instype == 'header': work = self.header.split('\n')
-        if instype == 'full': work = self.full.split('\n')
-        else: work = self.header.split('\n')
+        if instype == 'full': initwork = self.full.split('\n')
+        else: initwork = self.header.split('\n')
         # Handle copyright name and optional signature line:
-        nextline = 1
-        for line in work:
+        work = []
+        for line in initwork:
             if line.startswith(self.copyrightpre):
                 # To Do: Fix next line, it's the problem.
-                line = line + cyear + ' ' + cname
+                work.append(line + cyear + ' ' + cname)
                 if signature:
-                    work.insert(nextline, signature)
-            nextline = nextline + 1
+                    work.append(signature)
+            else:
+                work.append(line)
         # Add all of the pre-copyright lines in reverse order:
         if progdesc: work.insert(0, progdesc)
         if encoding: work.insert(0, encoding)
@@ -70,7 +71,7 @@ class LicenseModule:
         # It's probably an option parsing problem, wrong thing
         # is being sent to this function for various variables.
         # work = " ".join(work)
-        self.finalproduct = ['# ' + line + '\n' for line in work]
+        self.finalproduct = [comment + line + '\n' for line in work]
         return 0
 
     def write_final(self, inputfile):
