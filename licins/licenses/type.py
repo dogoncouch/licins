@@ -42,9 +42,9 @@ class LicenseModule:
         """Prepare the license with comments, etc."""
         # To Do: replace default year with current year from os.
         # To Do: get rid of this next cheat line:
-        instype = 'header'
+        #instype = 'header'
         # if 'header' in instype: work = self.header.split('\n')
-        if instype == 'header': work = self.header.split('\n')
+        #if instype == 'header': work = self.header.split('\n')
         if instype == 'full': work = self.full.split('\n')
         else: work = self.header.split('\n')
         # Handle copyright name and optional signature line:
@@ -60,14 +60,17 @@ class LicenseModule:
         if encoding: work.insert(0, encoding)
         if prefix: work.insert(0, prefix)
         # Add the comments
-        for line in work:
-            line = str(comment + line)
+        # To Do: make this work.
+        ['# ' + s + '\n' for s in work]
+        # for line in work:
+        #     line = '# ' + line + '\n'
         # Prepare the final product:
         # To Do: fix problem: work is not made up of strings.
         # It's probably an option parsing problem, wrong thing
         # is being sent to this function for various variables.
         # work = " ".join(work)
         self.finalproduct = work
+        return 0
 
     def write_final(self, inputfile):
         """Insert the formatted license into a file"""
@@ -80,11 +83,13 @@ class LicenseModule:
         # startline = 0
         # Read the file and add our prepared license:
         # final_list = []
+        # self.finalproduct = '\n'.join(self.finalproduct)
         lines[startline:startline] = self.finalproduct
         # final_list = lines.insert(startline, self.finalproduct)
         # final_list = lines.insert(startline, self.final_list)
-        final = '\n'.join(lines)
+        final = ''.join(lines)
         # Write the final result:
         output = open(inputfile, 'w')
         output.write(final)
         output.close()
+        return 0
