@@ -61,7 +61,7 @@ class LicenseModule:
         if prefix: work.insert(0, prefix)
         # Add the comments
         # To Do: make this work.
-        ['# ' + s + '\n' for s in work]
+        # ['# ' + s + '\n' for s in work]
         # for line in work:
         #     line = '# ' + line + '\n'
         # Prepare the final product:
@@ -69,7 +69,7 @@ class LicenseModule:
         # It's probably an option parsing problem, wrong thing
         # is being sent to this function for various variables.
         # work = " ".join(work)
-        self.finalproduct = work
+        self.finalproduct = ['# ' + line + '\n' for line in work]
         return 0
 
     def write_final(self, inputfile):
