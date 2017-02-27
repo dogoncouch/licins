@@ -47,9 +47,10 @@ class LicenseModule:
         work = []
         for line in initwork:
             if line.startswith(self.copyrightpre):
-                work.append(line + cyear + ' ' + cname)
-                if signature:
-                    work.append(signature)
+                if cname:
+                    work.append(line + cyear + ' ' + cname)
+                else: work.append(line)
+                if signature: work.append(signature)
             else:
                 work.append(line)
         # Add all of the pre-copyright lines in reverse order:
