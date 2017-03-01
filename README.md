@@ -12,11 +12,11 @@ licins is a tool for inserting commented software licenses into source code.
     --version     show program's version number and exit
     -h, --help    show this help message and exit
     --list        return a list of available licenses
+    -l LICENSE    set which license to use
     -t LICTYPE    set license type (header|full, default=header)
     -c COMMENT    set the comment string (default='# ')
     -c COMMENTEND set the comment end string
     -n CNAME      set the copyright name
-    -l LICENSE    set which license to use
     -p PREFIX     set the first line (e.g. #!/bin/bash)
     -e ENCODING   add an encoding line
     -s SIGNATURE  add a signature line to follow the (c) name

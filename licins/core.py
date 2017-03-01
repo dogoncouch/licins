@@ -56,6 +56,10 @@ class LicInsCore:
                 action="callback",
                 callback=self.list_licenses,
                 help="return a list of available licenses")
+        self.option_parser.add_option("-l",
+                action="store",
+                dest="license", default="mit",
+                help="set which license to use")
         self.option_parser.add_option("-t",
                 action="store",
                 dest="lictype", default="header",
@@ -72,10 +76,6 @@ class LicInsCore:
                 action="store",
                 dest="cname",
                 help="set the copyright name")
-        self.option_parser.add_option("-l",
-                action="store",
-                dest="license", default="mit",
-                help="set which license to use")
         self.option_parser.add_option("-p",
                 action="store",
                 dest="prefix",
