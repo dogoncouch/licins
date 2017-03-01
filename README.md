@@ -5,7 +5,7 @@ licins - Insert software licenses into source code.
 licins [-t LICTYPE] [-c COMMENT] [-C COMMENTEND] [-n CNAME] [-l LICENSE] [-p PREFIX] [-e ENCODING] [-s SIGNATURE] files
 
 # DESCRIPTION
-\fBlicins\fP is a tool for inserting commented software licenses into source code.
+licins is a tool for inserting commented software licenses into source code.
 
 # OPTIONS
 
