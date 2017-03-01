@@ -29,6 +29,12 @@ from sys import prefix
 
 ourdata = [(join(prefix, 'share/man/man1'), 'doc/licins.1'),
         (join(prefix, 'share/doc/licins'), 'README.md', 'LICENSE'),
+        (join(prefix, 'share/doc/licenses'), ['doc/licenses/LGPL-3',
+            'doc/licenses/LGPL-2', 'doc/licenses/LGPL-2.1',
+            'doc/licenses/GPL-3', 'doc/licenses/Apache-2.0',
+            'doc/licenses/BSD-2', 'doc/licenses/GFDL-1.3',
+            'doc/licenses/GFDL-1.2', 'doc/licenses/MIT',
+            'doc/licenses/BSD-3', 'doc/licenses/GPL-2', 'doc/licenses/BSD'])
         (join(prefix, 'share/licins/config'), 'licins.conf')]
 
 setup(name='licins', version = str(__version__),
@@ -37,4 +43,12 @@ setup(name='licins', version = str(__version__),
         author = 'Dan Persons', author_email = 'dpersonsdev@gmail.com',
         url = 'https://github.com/dogoncouch/licins',
         packages = ['LicIns', 'LicIns.licenses'],
-        scripts = ['licins'], data_files = ourdata)
+        scripts = ['licins'], data_files = ourdata,
+        classifiers = ["Development Status :: 4 :: Beta",
+            "Environment :: Console",
+            "Intended Audience :: Developers",
+            "License :: OSI Approved :: MIT License",
+            "Natural Language :: English",
+            "Operating System :: POSIX",
+            "Programming Language :: Python :: 2",
+            "Topic :: Software Development"]

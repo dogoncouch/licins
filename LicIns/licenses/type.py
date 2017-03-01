@@ -36,17 +36,16 @@ class LicenseModule:
         self.finalproduct = []
         pass
 
-    def prep(self, lictype = 'header', comment = '## ', commentend = '',
+    def prep(self, lictype = 'header', comment = '# ', commentend = '',
             cname = '', cyear = 2017, progdesc = None, prefix = None,
             encoding = None, signature = None):
         """Prepare the license with comments, etc."""
-        # To Do: replace default year with current year from os.
         if lictype == 'full': initwork = self.full.split('\n')
         else: initwork = self.header.split('\n')
-        # Handle copyright name and optional signature line:
+        # Handle copyright name and optional signature line in headers:
         work = []
         for line in initwork:
-            if line.startswith(self.copyrightpre):
+            if lictype == 'header' and line.startswith(self.copyrightpre):
                 if cname:
                     work.append(line + cyear + ' ' + cname)
                 else: work.append(line)
@@ -56,7 +55,6 @@ class LicenseModule:
         # Add all of the pre-copyright lines in reverse order:
         if progdesc: work.insert(0, progdesc)
         if encoding: work.insert(0, encoding)
-        # if prefix: work.insert(0, prefix)
         # Prepare the final product with comments:
         if commentend:
             self.finalproduct = [comment + line + commentend + \
