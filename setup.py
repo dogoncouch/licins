@@ -29,7 +29,7 @@ from sys import prefix
 
 ourdata = [(join(prefix, 'share/man/man1'), 'doc/licins.1'),
         (join(prefix, 'share/doc/licins'), 'README.md', 'LICENSE'),
-        (join(prefix, 'share/doc/licenses'), ['doc/licenses/LGPL-3',
+        (join(prefix, 'share/doc/licins/licenses'), ['doc/licenses/LGPL-3',
             'doc/licenses/LGPL-2', 'doc/licenses/LGPL-2.1',
             'doc/licenses/GPL-3', 'doc/licenses/Apache-2.0',
             'doc/licenses/BSD-2', 'doc/licenses/GFDL-1.3',
