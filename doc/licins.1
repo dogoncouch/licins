@@ -6,7 +6,7 @@ licins - Insert software licenses into source code.
 .B licins [-t LICTYPE] [-c COMMENT] [-C COMMENTEND] [-d PROGDESC] [-n CNAME] [-l LICENSE] [-p PREFIX] [-e ENCODING] [-s SIGNATURE] files
 
 .SH DESCRIPTION
-\fBlicins\fP is a tool for inserting commented software licenses into source code.
+\fBlicins\fP is a tool for inserting commented software licenses into source code. Comes with modules for popular open source licenses. Copy the config file at /usr/share/licins/config/licins.conf to ~/.config/ for persistent options. Stop copying and pasting.
 
 .SH OPTIONS
 
@@ -28,6 +28,13 @@ Always put multi-word option arguments in quotes!
 .SH EXAMPLES
     licins -l mit -n 'Dan Persons' -p '#!/usr/bin/env python' *.py
     licins -l gpl2 -n 'John Exampleton' -c '/*' -C '*/' example.c
+    licins -l gpl3 -t full -c '' LICENSE
+    licins mything.pl
+
+.SH FILES
+    /usr/share/doc/licins/licenses/
+    /usr/share/licins/config/licins.conf
+    ~/.config/licins.conf
 
 .SH AUTHOR
     Dan Persons (dpersonsdev@gmail.com)
