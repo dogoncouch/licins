@@ -1,36 +1,37 @@
-# NAME
+.TH LICINS 1
+.SH NAME
 licins - Insert software licenses into source code.
 
-# SYNOPSIS
-licins [-t LICTYPE] [-c COMMENT] [-C COMMENTEND] [-n CNAME] [-l LICENSE] [-p PREFIX] [-e ENCODING] [-s SIGNATURE] files
+.SH SYNOPSIS
+.B licins [-t LICTYPE] [-c COMMENT] [-C COMMENTEND] [-n CNAME] [-l LICENSE] [-p PREFIX] [-e ENCODING] [-s SIGNATURE] files
 
-# DESCRIPTION
+.SH DESCRIPTION
 \fBlicins\fP is a tool for inserting commented software licenses into source code.
 
-# OPTIONS
+.SH OPTIONS
 
-    --version     show program's version number and exit
-    -h, --help    show this help message and exit
-    --list        return a list of available licenses
-    -t LICTYPE    set license type (header|full, default=header)
-    -c COMMENT    set the comment string (default='# ')
-    -c COMMENTEND set the comment end string
-    -n CNAME      set the copyright name
-    -l LICENSE    set which license to use
-    -p PREFIX     set the first line (e.g. #!/bin/bash)
-    -e ENCODING   add an encoding line
-    -s SIGNATURE  add a signature line to follow the (c) name
+    \fB--version\fP     show program's version number and exit
+    \fB-h\fP, \fB--help\fP    show this help message and exit
+    \fB--list\fP        return a list of available licenses
+    \fB-t \fILICTYPE\fR    set license type (header|full, default=header)
+    \fB-c \fICOMMENT\fR    set the comment string (default='# ')
+    \fB-c \fICOMMENTEND\fR set the comment end string
+    \fB-n \fICNAME\fR      set the copyright name
+    \fB-l \fILICENSE\fR    set which license to use
+    \fB-p \fIPREFIX\fR     set the first line (e.g. #!/bin/bash)
+    \fB-e \fIENCODING\fR   add an encoding line
+    \fB-s \fISIGNATURE\fR  add a signature line to follow the (c) name
 
 Always put multi-word option arguments in quotes!
 
-# EXAMPLES
+.SH EXAMPLES
     licins -l mit -n 'Dan Persons' -p '/#!usr/bin/python' *.py
     licins -l gpl2 -n 'John Exampleton' -c '/*' -C '*/' example.c
 
-# AUTHOR
+.SH AUTHOR
     Dan Persons (dpersonsdev@gmail.com)
 
-# COPYRIGHT
+.SH COPYRIGHT
 MIT License
 
 Copyright (c) 2017 Dan Persons

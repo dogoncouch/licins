@@ -43,6 +43,7 @@ class LicInsCore:
         self.cname = ''
         self.signature = ''
         self.comment = ''
+        self.commentend = ''
         self.options = None
         self.option_parser = OptionParser(
                 usage = ("Usage: %prog [options] filename"),
@@ -63,6 +64,10 @@ class LicInsCore:
                 action="store",
                 dest="comment", default="# ",
                 help="set the comment string")
+        self.option_parser.add_option("-C",
+                action="store",
+                dest="commentend", default="# ",
+                help="set the comment end string")
         self.option_parser.add_option("-n",
                 action="store",
                 dest="cname",
@@ -110,6 +115,7 @@ class LicInsCore:
         self.config_options()
         ourlictype = self.options.lictype
         ourcomment = self.options.comment
+        ourcommentend = self.options.commentend
         ourprefix = self.options.prefix
         ourencoding = self.options.encoding
         ourcname = self.options.cname
@@ -118,9 +124,10 @@ class LicInsCore:
         for job in self.args:
             thisjob = self.license_modules[self.options.license]
             thisjob.prep(lictype = ourlictype, comment = ourcomment,
-                    progdesc = None, prefix = ourprefix, 
-                    encoding = ourencoding, cname = ourcname, 
-                    cyear = ouryear, signature = oursignature)
+                    commentend = ourcommentend, progdesc = None,
+                    prefix = ourprefix, encoding = ourencoding,
+                    cname = ourcname, cyear = ouryear,
+                    signature = oursignature)
             thisjob.write_final(job)
 
 if __name__ == "__main__":

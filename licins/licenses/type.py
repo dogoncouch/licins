@@ -36,9 +36,9 @@ class LicenseModule:
         self.finalproduct = []
         pass
 
-    def prep(self, lictype = 'header', comment = '## ', cname = '',
-            cyear = 2017, progdesc = None, prefix = None, encoding = None,
-            signature = None):
+    def prep(self, lictype = 'header', comment = '## ', commentend = '',
+            cname = '', cyear = 2017, progdesc = None, prefix = None,
+            encoding = None, signature = None):
         """Prepare the license with comments, etc."""
         # To Do: replace default year with current year from os.
         if lictype == 'full': initwork = self.full.split('\n')
@@ -58,7 +58,8 @@ class LicenseModule:
         if encoding: work.insert(0, encoding)
         if prefix: work.insert(0, prefix)
         # Prepare the final product with comments:
-        self.finalproduct = [comment + line + '\n' for line in work]
+        self.finalproduct = [comment + line + commentend + \
+                '\n' for line in work]
         return 0
 
     def write_final(self, inputfile):
