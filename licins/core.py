@@ -66,7 +66,7 @@ class LicInsCore:
                 help="set the comment string")
         self.option_parser.add_option("-C",
                 action="store",
-                dest="commentend", default="# ",
+                dest="commentend",
                 help="set the comment end string")
         self.option_parser.add_option("-n",
                 action="store",

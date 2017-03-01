@@ -58,8 +58,11 @@ class LicenseModule:
         if encoding: work.insert(0, encoding)
         if prefix: work.insert(0, prefix)
         # Prepare the final product with comments:
-        self.finalproduct = [comment + line + commentend + \
-                '\n' for line in work]
+        if commentend:
+            self.finalproduct = [comment + line + commentend + \
+                    '\n' for line in work]
+        else:
+            self.finalproduct = [comment + line + '\n' for line in work]
         return 0
 
     def write_final(self, inputfile):
@@ -79,7 +82,6 @@ class LicenseModule:
         # Convert output from list to string:
         final = ''.join(lines)
         # Write to the file:
-        output = open(inputfile, 'w')
-        output.write(final)
-        output.close()
+        with open(inputfile, 'w') as output:
+            output.write(final)
         return 0
