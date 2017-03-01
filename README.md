@@ -2,7 +2,11 @@
 Command line tool to insert software licenses into source code.
 
 # SYNOPSIS
+<<<<<<< HEAD
 licins [-l LICENSE] [-t LICTYPE] [-c COMMENT] [-C COMMENTEND] [-n CNAME] [-p PREFIX] [-e ENCODING] [-s SIGNATURE] files
+=======
+licins [-t LICTYPE] [-c COMMENT] [-C COMMENTEND] [-d PROGDESC] [-n CNAME] [-l LICENSE] [-p PREFIX] [-e ENCODING] [-s SIGNATURE] files
+>>>>>>> dev
 
 # DESCRIPTION
 licins is a tool for inserting commented software licenses into source code. Comes with modules for popular open source licenses.
