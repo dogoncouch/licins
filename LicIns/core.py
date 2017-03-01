@@ -31,8 +31,8 @@ import ConfigParser
 from optparse import OptionParser
 from optparse import OptionGroup
 
-import licins.licenses
-from licins import __version__
+import LicIns.licenses
+from LicIns import __version__
 
 class LicInsCore:
 
@@ -57,8 +57,8 @@ class LicInsCore:
         # if os.path.isfile('~/.config/licins.conf'):
         myconf = os.getenv("HOME") + '/.config/licins.conf'
         if not os.path.isfile(myconf):
-            if os.path.isfile('/etc/licins.conf'):
-                copyfile('/etc/licins.conf', myconf)
+            if os.path.isfile('/usr/share/licins/config/licins.conf'):
+                copyfile('/usr/share/licins/config/licins.conf', myconf)
             else:
                 copyfile('licins.conf', myconf)
         config = ConfigParser.ConfigParser()
@@ -118,10 +118,10 @@ class LicInsCore:
     
     def load_licenses(self):
         """Load license module(s)"""
-        for lic in sorted(licins.licenses.__all__):
+        for lic in sorted(LicIns.licenses.__all__):
             self.license_modules[lic] = \
-                    __import__('licins.licenses.' + lic, globals(), \
-                    locals(), [licins]).LicenseModule()
+                    __import__('LicIns.licenses.' + lic, globals(), \
+                    locals(), [LicIns]).LicenseModule()
 
     # The main event:
     def insert(self):
