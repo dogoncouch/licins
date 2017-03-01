@@ -1,6 +1,16 @@
 # licins
 Command line tool to insert software licenses into source code.
 
+# INSTALLING
+git clone https://github.com/dogoncouch/licins.git
+cd licins
+python setup.py install --prefix /usr/ --root /
+
+# USE WITHOUT INSTALLING
+git clone https://github.com/dogoncouch/licins.git
+cd licins
+./licins [OPTIONS] files
+
 # SYNOPSIS
 licins [-l LICENSE] [-t LICTYPE] [-c COMMENT] [-C COMMENTEND] [-d PROGDESC] [-n CNAME] [-p PREFIX] [-e ENCODING] [-s SIGNATURE] files
 
@@ -27,6 +37,8 @@ Always put multi-word option arguments in quotes!
 # EXAMPLES
     licins -l mit -n 'Dan Persons' -p '#!/usr/bin/env python' *.py
     licins -l gpl2 -n 'John Exampleton' -c '/*' -C '*/' example.c
+    licins -l gpl3 -t full -c '' LICENSE
+    licins mything.pl
 
 # AUTHOR
     Dan Persons (dpersonsdev@gmail.com)
@@ -34,7 +46,7 @@ Always put multi-word option arguments in quotes!
 # COPYRIGHT
 MIT License
 
-Copyright (c) 2017 Dan Persons
+Copyright (c) 2017 Dan Persons (dpersonsdev@gmail.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
