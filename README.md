@@ -2,20 +2,20 @@
 Command line tool to insert software licenses into source code.
 
 # INSTALLING
-git clone https://github.com/dogoncouch/licins.git
-cd licins
+git clone https://github.com/dogoncouch/licins.git  
+cd licins  
 python setup.py install --prefix /usr/ --root /
 
 # USE WITHOUT INSTALLING
-git clone https://github.com/dogoncouch/licins.git
-cd licins
+git clone https://github.com/dogoncouch/licins.git  
+cd licins  
 ./licins [OPTIONS] files
 
 # SYNOPSIS
 licins [-l LICENSE] [-t LICTYPE] [-c COMMENT] [-C COMMENTEND] [-d PROGDESC] [-n CNAME] [-p PREFIX] [-e ENCODING] [-s SIGNATURE] files
 
 # DESCRIPTION
-licins is a tool for inserting commented software licenses into source code. Comes with modules for popular open source licenses, and uses a config file for persistent options. Stop copying and pasting.
+licins is a tool for inserting commented software licenses into source code. Comes with modules for popular open source licenses. Copy the config file at /usr/share/licins/config/licins.conf to ~/config/ for persistent options. Stop copying and pasting.
 
 # OPTIONS
 
