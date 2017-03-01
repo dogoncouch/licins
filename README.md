@@ -24,7 +24,7 @@ licins is a tool for inserting commented software licenses into source code.
 Always put multi-word option arguments in quotes!
 
 # EXAMPLES
-    licins -l mit -n 'Dan Persons' -p '/#!usr/bin/python' *.py
+    licins -l mit -n 'Dan Persons' -p '#!/usr/bin/env python' *.py
     licins -l gpl2 -n 'John Exampleton' -c '/*' -C '*/' example.c
 
 # AUTHOR

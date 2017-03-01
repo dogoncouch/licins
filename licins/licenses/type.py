@@ -56,13 +56,14 @@ class LicenseModule:
         # Add all of the pre-copyright lines in reverse order:
         if progdesc: work.insert(0, progdesc)
         if encoding: work.insert(0, encoding)
-        if prefix: work.insert(0, prefix)
+        # if prefix: work.insert(0, prefix)
         # Prepare the final product with comments:
         if commentend:
             self.finalproduct = [comment + line + commentend + \
                     '\n' for line in work]
         else:
             self.finalproduct = [comment + line + '\n' for line in work]
+        if prefix: self.finalproduct.insert(0, prefix)
         return 0
 
     def write_final(self, inputfile):
