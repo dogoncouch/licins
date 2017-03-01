@@ -63,7 +63,7 @@ class LicenseModule:
                     '\n' for line in work]
         else:
             self.finalproduct = [comment + line + '\n' for line in work]
-        if prefix: self.finalproduct.insert(0, prefix)
+        if prefix: self.finalproduct.insert(0, prefix + '\n\n')
         return 0
 
     def write_final(self, inputfile):
