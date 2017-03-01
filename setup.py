@@ -2,7 +2,7 @@
 
 # MIT License
 # 
-# Copyright (c) 2017 Dan Persons <dpersonsdev@gmail.com>
+# Copyright (c) 2017 Dan Persons
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -21,8 +21,20 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+# 
 
-from licins.core import LicInsCore
+from setuptools import setup
+from os.path import join
+from sys import prefix
 
-surgery = LicInsCore()
-surgery.insert()
+ourdata = [(join(prefix, 'share/man/man1'), 'doc/licins.1'),
+        (join(prefix, 'share/doc/licins'), 'README.md', 'LICENSE'),
+        (join(prefix, 'share/licins/config'), 'licins.conf')]
+
+setup(name='licins', version = str(__version__),
+        description = 'Insert commented licenses into source files',
+        long_description = open('README.md').read(),
+        author = 'Dan Persons', author_email = 'dpersonsdev@gmail.com',
+        url = 'https://github.com/dogoncouch/licins',
+        packages = ['LicIns', 'LicIns.licenses'],
+        scripts = ['licins'], data_files = ourdata)
