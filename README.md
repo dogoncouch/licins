@@ -1,11 +1,11 @@
-# NAME
-licins - Insert software licenses into source code.
+# licins
+Command line tool to insert software licenses into source code.
 
 # SYNOPSIS
 licins [-t LICTYPE] [-c COMMENT] [-C COMMENTEND] [-n CNAME] [-l LICENSE] [-p PREFIX] [-e ENCODING] [-s SIGNATURE] files
 
 # DESCRIPTION
-licins is a tool for inserting commented software licenses into source code.
+licins is a tool for inserting commented software licenses into source code. Comes with modules for popular open source licenses.
 
 # OPTIONS
 
@@ -16,6 +16,7 @@ licins is a tool for inserting commented software licenses into source code.
     -t LICTYPE    set license type (header|full, default=header)
     -c COMMENT    set the comment string (default='# ')
     -c COMMENTEND set the comment end string
+    -d PROGDESC   set a program description line
     -n CNAME      set the copyright name
     -p PREFIX     set the first line (e.g. #!/bin/bash)
     -e ENCODING   add an encoding line
