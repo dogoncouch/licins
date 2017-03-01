@@ -24,8 +24,10 @@
 
 import os
 import sys
+from shutil import copyfile
 import string
 import datetime
+import ConfigParser
 from optparse import OptionParser
 from optparse import OptionGroup
 
@@ -52,41 +54,54 @@ class LicInsCore:
 
     def config_options(self):
         """Set config options"""
+        # if os.path.isfile('~/.config/licins.conf'):
+        myconf = os.getenv("HOME") + '/.config/licins.conf'
+        if not os.path.isfile(myconf):
+            if os.path.isfile('/etc/licins.conf'):
+                copyfile('/etc/licins.conf', myconf)
+            else:
+                copyfile('licins.conf', myconf)
+        config = ConfigParser.ConfigParser()
+        config.read(myconf)
         self.option_parser.add_option("--list",
                 action="callback",
                 callback=self.list_licenses,
                 help="return a list of available licenses")
         self.option_parser.add_option("-l",
                 action="store",
-                dest="license", default="mit",
+                dest="license", default=config.get("licins", "license"),
                 help="set which license to use")
         self.option_parser.add_option("-t",
                 action="store",
-                dest="lictype", default="header",
-                help="set license type (header|full, default=header)")
+                dest="lictype", default=config.get("licins", "lictype"),
+                help="set license type")
         self.option_parser.add_option("-c",
                 action="store",
-                dest="comment", default="# ",
+                dest="comment", default=config.get("licins", "comment"),
                 help="set the comment string")
         self.option_parser.add_option("-C",
                 action="store",
-                dest="commentend",
+                dest="commentend", default=config.get("licins", "commentend"),
                 help="set the comment end string")
+        self.option_parser.add_option("-d",
+                action="store",
+                dest="progdesc", default=config.get("licins", "progdesc"),
+                help="set a program description line")
         self.option_parser.add_option("-n",
                 action="store",
-                dest="cname",
+                dest="cname", default=config.get("licins", "cname"),
                 help="set the copyright name")
         self.option_parser.add_option("-p",
                 action="store",
-                dest="prefix",
-                help="set the first line (e.g. #!/bin/bash)")
+                dest="prefix", default=config.get("licins", "prefix"),
+                help="set the first line (e.g. '#!/bin/bash)'")
         self.option_parser.add_option("-e",
                 action="store",
-                dest="encoding",
+                dest="encoding", default=config.get("licins", "encoding"),
                 help="add an encoding line")
         self.option_parser.add_option("-s",
                 action="store",
-                dest="signature",
+                dest="signature", default=config.get("licins", "signature"),
                 help="add a signature line to follow the (c) name")
         
         self.options, self.args = self.option_parser.parse_args(sys.argv[1:])
