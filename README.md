@@ -4,7 +4,7 @@ Command line tool to insert software licenses into source code.
 # INSTALLING
 git clone https://github.com/dogoncouch/licins.git  
 cd licins  
-python setup.py install --prefix /usr/ --root /
+sudo python setup.py install --prefix /usr/ --root /
 
 # USE WITHOUT INSTALLING
 git clone https://github.com/dogoncouch/licins.git  
