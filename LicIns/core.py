@@ -54,12 +54,10 @@ class LicInsCore:
 
     def config_options(self):
         """Set config options"""
-        # if os.path.isfile('~/.config/licins.conf'):
         myconf = os.getenv("HOME") + '/.config/licins.conf'
         if not os.path.isfile(myconf):
             confdir = os.getenv("HOME") + '/.config'
-            try: os.stat(confdir)
-            except: os.mkdir(confdir)
+            if not os.path.exists(confdir): os.mkdir(confdir)
             if os.path.isfile('/usr/share/licins/config/licins.conf'):
                 copyfile('/usr/share/licins/config/licins.conf', myconf)
             else:
