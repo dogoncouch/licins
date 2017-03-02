@@ -1,5 +1,5 @@
 # licins
-Command line tool to insert software licenses into source code.
+Command line tool to insert software licenses into source code. Includes persistent config.
 
 # INSTALLING
     git clone https://github.com/dogoncouch/licins.git
