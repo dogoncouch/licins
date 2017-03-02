@@ -26,16 +26,37 @@
 from setuptools import setup
 from os.path import join
 from sys import prefix
+from LicIns import __version__
 
-ourdata = [(join(prefix, 'share/man/man1'), 'doc/licins.1'),
-        (join(prefix, 'share/doc/licins'), 'README.md', 'LICENSE'),
+# ourdata = [(join(prefix, 'share/man/man1'), 'doc/licins.1'),
+#         (join(prefix, 'share/doc/licins'), 'README.md', 'LICENSE'),
+#         (join(prefix, 'share/doc/licins/licenses'), 'doc/licenses/LGPL-2'),
+#         (join(prefix, 'share/doc/licins/licenses'),
+#             'doc/licenses/LGPL-2-1'),
+#         (join(prefix, 'share/doc/licins/licenses'), 'doc/licenses/LGPL-3'),
+#         (join(prefix, 'share/doc/licins/licenses'), 'doc/licenses/GPL-2'),
+#         (join(prefix, 'share/doc/licins/licenses'), 'doc/licenses/GPL-3'),
+#         (join(prefix, 'share/doc/licins/licenses'),
+#             'doc/licenses/Apache-2.0'),
+#         (join(prefix, 'share/doc/licins/licenses'), 'doc/licenses/BSD-2'),
+#         (join(prefix, 'share/doc/licins/licenses'), 'doc/licenses/BSD-3'),
+#         (join(prefix, 'share/doc/licins/licenses'), 'doc/licenses/MIT'),
+#         (join(prefix, 'share/doc/licins/licenses'),
+#             'doc/licenses/GFDL-1-2'),
+#         (join(prefix, 'share/doc/licins/licenses'),
+#             'doc/licenses/GFDL-1-3'),
+#         (join(prefix, 'share/doc/licins/licenses'), 'doc/licenses/LGPL-3'),
+#         (join(prefix, 'share/licins/config'), 'licins.conf')]
+
+ourdata = [(join(prefix, 'share/man/man1'), ['doc/licins.1']),
+        (join(prefix, 'share/doc/licins'), ['README.md', 'LICENSE']),
         (join(prefix, 'share/doc/licins/licenses'), ['doc/licenses/LGPL-3',
             'doc/licenses/LGPL-2', 'doc/licenses/LGPL-2.1',
             'doc/licenses/GPL-3', 'doc/licenses/Apache-2.0',
             'doc/licenses/BSD-2', 'doc/licenses/GFDL-1.3',
             'doc/licenses/GFDL-1.2', 'doc/licenses/MIT',
-            'doc/licenses/BSD-3', 'doc/licenses/GPL-2', 'doc/licenses/BSD'])
-        (join(prefix, 'share/licins/config'), 'licins.conf')]
+            'doc/licenses/BSD-3', 'doc/licenses/GPL-2']),
+        (join(prefix, 'share/licins/config'), ['licins.conf'])]
 
 setup(name='licins', version = str(__version__),
         description = 'Insert commented licenses into source files',
@@ -51,4 +72,4 @@ setup(name='licins', version = str(__version__),
             "Natural Language :: English",
             "Operating System :: POSIX",
             "Programming Language :: Python :: 2",
-            "Topic :: Software Development"]
+            "Topic :: Software Development"])
