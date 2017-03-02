@@ -29,7 +29,7 @@ class LicenseModule(TypeModule):
     def __init__(self):
         """Initialize bsd3 license module"""
         self.name = 'bsd3'
-        self.desc = 'The Berkeley Software Development license v3'
+        self.desc = 'The Berkeley Software Distribution license v3'
         # Short header version:
         self.header = """Copyright (c) 
 
