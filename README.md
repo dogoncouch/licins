@@ -2,14 +2,14 @@
 Command line tool to insert software licenses into source code.
 
 # INSTALLING
-git clone https://github.com/dogoncouch/licins.git  
-cd licins  
-sudo python setup.py install --prefix /usr/ --root /
+    git clone https://github.com/dogoncouch/licins.git
+    cd licins
+    sudo python setup.py install --prefix /usr/ --root /
 
 # USE WITHOUT INSTALLING
-git clone https://github.com/dogoncouch/licins.git  
-cd licins  
-./licins [OPTIONS] files
+    git clone https://github.com/dogoncouch/licins.git
+    cd licins
+    ./licins [OPTIONS] files
 
 # SYNOPSIS
 licins [-l LICENSE] [-t LICTYPE] [-c COMMENT] [-C COMMENTEND] [-d PROGDESC] [-n CNAME] [-p PREFIX] [-e ENCODING] [-s SIGNATURE] files
@@ -65,4 +65,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
