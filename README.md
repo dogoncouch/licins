@@ -15,7 +15,7 @@ Command line tool to insert software licenses into source code. Includes persist
 licins [-l LICENSE] [-t LICTYPE] [-c COMMENT] [-C COMMENTEND] [-d PROGDESC] [-n CNAME] [-p PREFIX] [-e ENCODING] [-s SIGNATURE] files
 
 # DESCRIPTION
-licins is a tool for inserting commented software licenses into source code. Comes with modules for popular open source licenses. Copy the config file at /usr/share/licins/config/licins.conf to ~/config/ for persistent options. Stop copying and pasting.
+licins is a tool for inserting commented software licenses into source code. Comes with modules for popular open source licenses. Copy the config file at /usr/share/licins/config/licins.conf to ~/config/ for persistend options. Licenses are inserted at the beginning of files, but after any lines starting with #!.
 
 # OPTIONS
 
