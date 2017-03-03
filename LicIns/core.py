@@ -145,6 +145,10 @@ class LicInsCore:
                     signature = oursignature)
             thisjob.write_final(job)
 
+def main():
+    surgery = LicInsCore()
+    surgery.insert()
+
 if __name__ == "__main__":
     surgery = LicInsCore()
     surgery.insert()
