@@ -45,7 +45,7 @@ class LicenseModule:
         # Handle copyright name and optional signature line in headers:
         work = []
         for line in initwork:
-            if lictype == 'header' and line.startswith(self.copyrightpre):
+            if line.startswith(self.copyrightpre):
                 if cname:
                     work.append(line + cyear + ' ' + cname)
                 else: work.append(line)

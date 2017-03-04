@@ -30,7 +30,7 @@ licins [-l LICENSE] [-t LICTYPE] [-c COMMENT] [-C COMMENTEND] [-d PROGDESC] [-n 
     -e ENCODING   add an encoding line
     -s SIGNATURE  add a signature line to follow the (c) name
 
-Always put multi-word option arguments in quotes!
+Always put multi-word option arguments in single quotes!
 
 # EXAMPLES
     licins -l mit -n 'Dan Persons' -p '#!/usr/bin/env python' *.py

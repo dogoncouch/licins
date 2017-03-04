@@ -50,7 +50,7 @@ class LicInsCore:
         self.option_parser = OptionParser(
                 usage = ("Usage: %prog [options] filename"),
                 version = "%prog" + '-' + str(__version__),
-                epilog="Always put multi-word option arguments in quotes! Create a local copy of /usr/share/licins/config/licins.conf at ~/.config/licins.conf for persistent options.")
+                epilog="Always put multi-word option arguments in single quotes! Create a local copy of /usr/share/licins/config/licins.conf at ~/.config/licins.conf for persistent options.")
 
     def config_options(self):
         """Set config options"""
