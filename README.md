@@ -1,6 +1,5 @@
 # licins
-CLI tool for inserting commented software licenses into source code. It comes with modules for popular open source licenses. Copy the config file at /usr/share/licins/config/licins.conf to ~/config/ for persistent options. Licenses are inserted at the beginning of files, but after any lines starting with #!.
-Command line tool to insert software licenses into source code. Includes persistent config.
+CLI tool for inserting commented software licenses into source code. It comes with modules for popular open source licenses. Use ~/.config/licins.conf for persistent options. Licenses are inserted at the beginning of files, but after any lines starting with #!.
 
 # INSTALLING
     git clone https://github.com/dogoncouch/licins.git
