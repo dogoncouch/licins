@@ -1,5 +1,5 @@
 # licins
-CLI tool for inserting commented software licenses into source code. It comes with modules for popular open source licenses. Use ~/.config/licins.conf for persistent options. Licenses are inserted at the beginning of files, but after any lines starting with #!.
+licins is a tool for inserting commented software licenses into source code. It comes with modules for popular open source licenses. Use ~/.config/licins.conf for persistent options. Licenses are inserted at the beginning of files, but after any lines starting with #!.
 
 # INSTALLING
     git clone https://github.com/dogoncouch/licins.git
@@ -30,6 +30,20 @@ licins [-l LICENSE] [-t LICTYPE] [-c COMMENT] [-C COMMENTEND] [-d PROGDESC] [-n 
     -s SIGNATURE  add a signature line to follow the (c) name
 
 Always put multi-word option arguments in single quotes!
+
+    ==== Available license modules: ====
+    
+    apache    : The Apache 2.0 license
+    bsd2      : The Berkeley Software Distribution license v2
+    bsd3      : The Berkeley Software Distribution license v3
+    gfdl1-2   : The GNU Free Documentation License v1.2
+    gfdl1-3   : The GNU Free Documentation License v1.3
+    gpl2      : The GNU General Public License v2
+    gpl3      : The Gnu General Public License v3
+    lgpl2     : The GNU Library General Public License v2
+    lgpl2-1   : The GNU Library General Public License v2.1
+    lgpl3     : The GNU Library General Public License v3
+    mit       : The MIT License
 
 # EXAMPLES
     licins -l mit -n 'Dan Persons' -p '#!/usr/bin/env python' *.py
