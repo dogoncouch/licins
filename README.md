@@ -9,10 +9,7 @@ licins is a tool for inserting commented software licenses into source code. It 
 # USE WITHOUT INSTALLING
     git clone https://github.com/dogoncouch/licins.git
     cd licins
-    ./licins [OPTIONS] files
-
-# SYNOPSIS
-licins [-l LICENSE] [-t LICTYPE] [-c COMMENT] [-C COMMENTEND] [-d PROGDESC] [-n CNAME] [-p PREFIX] [-e ENCODING] [-s SIGNATURE] files
+    ./licins.py [OPTIONS] files
 
 # OPTIONS
 
@@ -49,7 +46,8 @@ Always put multi-word option arguments in single quotes!
     licins -l mit -n 'Dan Persons' -p '#!/usr/bin/env python' *.py
     licins -l gpl2 -n 'John Exampleton' -c '/*' -C '*/' example.c
     licins -l gpl3 -t full -c '' LICENSE
-    licins mything.pl
+    licins iwrotethisawhileago.pl
+    licins *.py
 
 # AUTHOR
     Dan Persons (dpersonsdev@gmail.com)

@@ -58,8 +58,8 @@ class LicInsCore:
         if not os.path.isfile(myconf):
             confdir = os.getenv("HOME") + '/.config'
             if not os.path.exists(confdir): os.mkdir(confdir)
-            if os.path.isfile('/usr/share/licins/config/licins.conf'):
-                copyfile('/usr/share/licins/config/licins.conf', myconf)
+            if os.path.isfile('/usr/share/licins/licins.conf'):
+                copyfile('/usr/share/licins/licins.conf', myconf)
             else:
                 copyfile('licins.conf', myconf)
         config = ConfigParser.ConfigParser()
