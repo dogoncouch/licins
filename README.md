@@ -6,7 +6,7 @@ licins is a tool for inserting commented software licenses into source code. It 
     cd licins
     sudo python setup.py install
 
-# USE WITHOUT INSTALLING
+# TRY WITHOUT INSTALLING
     git clone https://github.com/dogoncouch/licins.git
     cd licins
     ./licins.py [OPTIONS] files
