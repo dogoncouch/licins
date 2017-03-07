@@ -46,7 +46,7 @@ class LicenseModule:
         work = []
         for line in initwork:
             if line.startswith(self.copyrightpre):
-                if cname:
+                if cname and not lictype == 'full':
                     work.append(line + cyear + ' ' + cname)
                 else: work.append(line)
                 if signature: work.append(signature)
