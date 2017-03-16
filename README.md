@@ -2,6 +2,8 @@
 licins is a tool for inserting commented software licenses into source code. It comes with modules for popular open source licenses. Use ~/.config/licins.conf for persistent options. Licenses are inserted at the beginning of files, but after any lines starting with #!.
 
 # INSTALLING
+Requirements: git, python-setuptools  
+
     git clone https://github.com/dogoncouch/licins.git
     cd licins
     sudo python setup.py install
