@@ -1,4 +1,4 @@
-__version__ = '0.7'
+__version__ = '0.7-beta'
 __author__ = 'Dan Persons <dpersonsdev@gmail.com>'
 __license__ = 'MIT License'
 __github__ = 'https://github.com/dogoncouch/licins'
