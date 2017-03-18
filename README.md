@@ -37,10 +37,10 @@ Always put multi-word option arguments in single quotes!
     bsd3      : The Berkeley Software Distribution license v3
     gfdl1-2   : The GNU Free Documentation License v1.2
     gfdl1-3   : The GNU Free Documentation License v1.3
-    gpl2      : The GNU General Public License v2
+    gpl2      : The GNU General Public License v2+
     gpl3      : The Gnu General Public License v3
-    lgpl2     : The GNU Library General Public License v2
-    lgpl2-1   : The GNU Library General Public License v2.1
+    lgpl2     : The GNU Library General Public License v2+
+    lgpl2-1   : The GNU Library General Public License v2.1+
     lgpl3     : The GNU Library General Public License v3
     mit       : The MIT License
 
