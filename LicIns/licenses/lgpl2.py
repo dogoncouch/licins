@@ -29,7 +29,7 @@ class LicenseModule(TypeModule):
     def __init__(self):
         """Initialize lgpl2 license module"""
         self.name = 'lgpl2'
-        self.desc = 'The GNU Library General Public License v2'
+        self.desc = 'The GNU Library General Public License v2+'
         # Short header version:
         self.header = """    Copyright (C) 
 
