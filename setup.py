@@ -71,8 +71,8 @@ Links
 * `README <https://github.com/dogoncouch/licins/blob/master/README.md>`_
 * `Development source <https://github.com/dogoncouch/licins/>`_
 
-
 """
+
 from setuptools import setup
 from os.path import join
 from sys import prefix
