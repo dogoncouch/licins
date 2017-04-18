@@ -15,6 +15,7 @@ See the latest instructions on the [releases page](https://github.com/dogoncouch
     -C COMMENTEND set the comment end string
     -d PROGDESC   set a program description line
     -n CNAME      set the copyright name
+    -y CYEAR      set the copyright year (default: current year)
     -p PREFIX     set the first line (e.g. #!/bin/bash)
     -e ENCODING   add an encoding line
     -s SIGNATURE  add a signature line to follow the (c) name

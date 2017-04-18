@@ -50,7 +50,7 @@ class LicInsCore:
         self.option_parser = OptionParser(
                 usage = ("Usage: %prog [options] filename"),
                 version = "%prog" + '-' + str(__version__),
-                epilog="Always put multi-word option arguments in single quotes! Use ~/.config/licins.conf for persistent options.")
+                epilog="Always put multi-word option arguments in single quotes!\nUse ~/.config/licins.conf for persistent options.")
 
     def config_options(self):
         """Set config options"""
@@ -92,6 +92,10 @@ class LicInsCore:
                 action="store",
                 dest="cname", default=config.get("licins", "cname"),
                 help="set the copyright name")
+        self.option_parser.add_option("-y",
+                action="store",
+                dest="cyear", default=False,
+                help="set the copyright year (default: current year)")
         self.option_parser.add_option("-p",
                 action="store",
                 dest="prefix", default=config.get("licins", "prefix"),
@@ -129,21 +133,21 @@ class LicInsCore:
         """Prep the header and add it to files"""
         self.load_licenses()
         self.config_options()
-        ourlictype = self.options.lictype
-        ourcomment = self.options.comment
-        ourcommentend = self.options.commentend
-        ourprefix = self.options.prefix
-        ourencoding = self.options.encoding
-        ourcname = self.options.cname
-        oursignature = self.options.signature
-        ouryear = str(datetime.datetime.now().year)
+        if cyear:
+            ouryear = cyear
+        else:
+            ouryear = str(datetime.datetime.now().year)
         for job in self.args:
             thisjob = self.license_modules[self.options.license]
-            thisjob.prep(lictype = ourlictype, comment = ourcomment,
-                    commentend = ourcommentend, progdesc = None,
-                    prefix = ourprefix, encoding = ourencoding,
-                    cname = ourcname, cyear = ouryear,
-                    signature = oursignature)
+            thisjob.prep(lictype = self.options.lictype,
+                    comment = self.options.comment,
+                    commentend = self.options.commentend,
+                    progdesc = self.options.progdesc,
+                    prefix = self.options.prefix,
+                    encoding = self.options.encoding,
+                    cname = self.options.cname,
+                    cyear = ouryear,
+                    signature = self.options.signature)
             thisjob.write_final(job)
 
 def main():
