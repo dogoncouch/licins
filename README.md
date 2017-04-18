@@ -11,8 +11,8 @@ See the latest instructions on the [releases page](https://github.com/dogoncouch
     --list        return a list of available licenses
     -l LICENSE    set which license to use
     -t LICTYPE    set license type (header|full, default=header)
-    -c COMMENT    set the comment string (default='# ')
-    -c COMMENTEND set the comment end string
+    -c COMMENT    set the comment string
+    -C COMMENTEND set the comment end string
     -d PROGDESC   set a program description line
     -n CNAME      set the copyright name
     -p PREFIX     set the first line (e.g. #!/bin/bash)
