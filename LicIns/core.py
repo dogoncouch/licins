@@ -133,8 +133,8 @@ class LicInsCore:
         """Prep the header and add it to files"""
         self.load_licenses()
         self.config_options()
-        if cyear:
-            ouryear = cyear
+        if self.options.cyear:
+            ouryear = self.options.cyear
         else:
             ouryear = str(datetime.datetime.now().year)
         for job in self.args:
