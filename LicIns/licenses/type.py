@@ -77,7 +77,9 @@ class LicenseModule:
         startline = 0
         if not lines: lines.append('\n')
         if lines[0]: 
-            if lines[0].startswith('#!'): startline = 1
+            if lines[0].startswith('#!'):
+                startline = 1
+                lines[0] = lines[0] + '\n'
         # Insert our header:
         lines[startline:startline] = self.finalproduct
         # Convert output from list to string:
