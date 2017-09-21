@@ -42,6 +42,8 @@ class LicenseModule:
         """Prepare the license with comments, etc."""
         if lictype == 'full': initwork = self.full.split('\n')
         else: initwork = self.header.split('\n')
+        # Append comment with a space:
+        if not comment.endswith(' '): comment = comment + ' '
         # Handle copyright name and optional signature line in headers:
         work = []
         for line in initwork:
