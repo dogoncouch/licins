@@ -58,10 +58,14 @@ class LicInsCore:
         if not os.path.isfile(myconf):
             confdir = os.getenv("HOME") + '/.config'
             if not os.path.exists(confdir): os.mkdir(confdir)
-            if os.path.isfile('/usr/share/licins/licins.conf'):
-                copyfile('/usr/share/licins/licins.conf', myconf)
+            if os.path.isfile('/usr/share/licins/config/licins.conf'):
+                copyfile('/usr/share/licins/config/licins.conf', myconf)
             else:
-                copyfile('licins.conf', myconf)
+                try:
+                    copyfile('licins.conf', myconf)
+                except IOError:
+                    print('Error: ~/.config/licins.conf cannot be found.')
+                    sys.exit(0)
         config = ConfigParser.ConfigParser()
         config.read(myconf)
         self.option_parser.add_option("--list",
