@@ -27,7 +27,10 @@ import sys
 from shutil import copyfile
 import string
 import datetime
-import ConfigParser
+try:
+    from configparser import ConfigParser
+except ImportError:
+    from ConfigParser import ConfigParser
 from optparse import OptionParser
 from optparse import OptionGroup
 
@@ -66,7 +69,7 @@ class LicInsCore:
                 except IOError:
                     print('Error: ~/.config/licins.conf cannot be found.')
                     sys.exit(0)
-        config = ConfigParser.ConfigParser()
+        config = ConfigParser()
         config.read(myconf)
         self.option_parser.add_option("--list",
                 action="callback",
@@ -118,11 +121,10 @@ class LicInsCore:
     # License modules:
     def list_licenses(self, *args):
         """Return a list of available license modules"""
-        print '==== Available license modules: ===='
-        print
+        print('==== Available license modules: ====\n')
         for lic in sorted(self.license_modules):
-            print string.ljust(self.license_modules[lic].name, 10) + \
-                    ': ' + self.license_modules[lic].desc
+            print(string.ljust(self.license_modules[lic].name, 10) + \
+                    ': ' + self.license_modules[lic].desc)
         sys.exit(0)
     
     def load_licenses(self):
