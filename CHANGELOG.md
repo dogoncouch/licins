@@ -8,6 +8,7 @@ Change log for [licins](https://github.com/dogoncouch/licins)
 ### Added
 - Automatically append space to comments
 - Append newline to hashbangs
+- Python 3 compatibility
 
 ## [1.0] 04-01-2017
 - First release

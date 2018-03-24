@@ -20,7 +20,7 @@ See the latest instructions on the [releases page](https://github.com/dogoncouch
     -e ENCODING   add an encoding line
     -s SIGNATURE  add a signature line to follow the (c) name
 
-Always put multi-word option arguments in single quotes!
+Always put multi-word option arguments in quotes!
 
     ==== Available license modules: ====
     
