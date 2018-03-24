@@ -123,7 +123,7 @@ class LicInsCore:
         """Return a list of available license modules"""
         print('==== Available license modules: ====\n')
         for lic in sorted(self.license_modules):
-            print(string.ljust(self.license_modules[lic].name, 10) + \
+            print(self.license_modules[lic].name.ljust(10) + \
                     ': ' + self.license_modules[lic].desc)
         sys.exit(0)
     
