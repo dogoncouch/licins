@@ -87,7 +87,7 @@ Links
 from setuptools import setup
 from os.path import join
 from sys import prefix
-from LicIns import __version__
+from licins import __version__
 
 ourdata = [(join(prefix, 'share/man/man1'), ['doc/licins.1']),
         (join(prefix, 'share/doc/licins'), ['README.md', 'LICENSE',
@@ -107,8 +107,8 @@ setup(name='licins', version = str(__version__),
         url = 'https://github.com/dogoncouch/licins',
         download_url = 'https://github.com/dogoncouch/licins/' + \
                 'archive/v' + str(__version__) + '.tar.gz',
-        packages = [ 'LicIns', 'LicIns.licenses' ],
-        entry_points = { 'console_scripts': [ 'licins = LicIns.core:main' ] },
+        packages = [ 'licins', 'licins.licenses' ],
+        entry_points = { 'console_scripts': [ 'licins = licins.core:main' ] },
         data_files = ourdata,
         keywords = ['development', 'developer-tools', 'cli', 'license',
             'license-management', 'licenses', 'open-source',
