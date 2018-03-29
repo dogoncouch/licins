@@ -23,13 +23,13 @@
 # SOFTWARE.
 
 # import os
-from LicIns.licenses.type import LicenseModule as TypeModule
+from licins.licenses.type import LicenseModule as TypeModule
 
 class LicenseModule(TypeModule):
     def __init__(self):
-        """Initialize bsd3 license module"""
-        self.name = 'bsd3'
-        self.desc = 'The Berkeley Software Distribution license v3'
+        """Initialize bsd2 license module"""
+        self.name = 'bsd2'
+        self.desc = 'The Berkeley Software Distribution license v2'
         # Short header version:
         self.header = """Copyright (c) 
 
@@ -87,5 +87,5 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."""
         # What comes before your name on copyright line:
-        self.copyrightpre = 'Copyright (c)'
+        self.copyrightpre = 'Copyright (c) '
         pass

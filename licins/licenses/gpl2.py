@@ -23,7 +23,7 @@
 # SOFTWARE.
 
 # import os
-from LicIns.licenses.type import LicenseModule as TypeModule
+from licins.licenses.type import LicenseModule as TypeModule
 
 class LicenseModule(TypeModule):
     def __init__(self):

@@ -32,8 +32,8 @@ except ImportError:
     from ConfigParser import ConfigParser
 from argparse import ArgumentParser
 
-import LicIns.licenses
-from LicIns import __version__
+import licins.licenses
+from licins import __version__
 
 class LicInsCore:
 
@@ -67,6 +67,8 @@ class LicInsCore:
                     exit(0)
         config = ConfigParser()
         config.read(myconf)
+        self.arg_parser.add_argument("--version", action="version",
+                version="%(prog)s " + str(__version__))
         self.arg_parser.add_argument("--list",
                 action="store_true", dest='list_licenses',
                 help="return a list of available licenses")
@@ -128,10 +130,10 @@ class LicInsCore:
     
     def load_licenses(self):
         """Load license module(s)"""
-        for lic in sorted(LicIns.licenses.__all__):
+        for lic in sorted(licins.licenses.__all__):
             self.license_modules[lic] = \
-                    __import__('LicIns.licenses.' + lic, globals(), \
-                    locals(), [LicIns]).LicenseModule()
+                    __import__('licins.licenses.' + lic, globals(), \
+                    locals(), [licins]).LicenseModule()
 
     # The main event:
     def insert(self):

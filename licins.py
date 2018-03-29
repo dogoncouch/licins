@@ -22,7 +22,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from LicIns.core import LicInsCore
+from licins.core import LicInsCore
 
 surgery = LicInsCore()
 surgery.insert()

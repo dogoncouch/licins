@@ -5,36 +5,49 @@ licins is a tool for inserting commented software licenses into source code. It 
 See the latest instructions on the [releases page](https://github.com/dogoncouch/licins/releases).
 
 # OPTIONS
+```
+usage: licins [-h] [--list] [-l LICENSE] [-t LICTYPE] [-c COMMENT]
+              [-C COMMENTEND] [-d PROGDESC] [-n CNAME] [-y CYEAR]
+              [-p PREFIX] [-e ENCODING] [-s SIGNATURE]
+              [FILE [FILE ...]]
 
-    --version     show program's version number and exit
-    -h, --help    show this help message and exit
-    --list        return a list of available licenses
-    -l LICENSE    set which license to use
-    -t LICTYPE    set license type (header|full, default=header)
-    -c COMMENT    set the comment string
-    -C COMMENTEND set the comment end string
-    -d PROGDESC   set a program description line
-    -n CNAME      set the copyright name
-    -y CYEAR      set the copyright year (default: current year)
-    -p PREFIX     set the first line (e.g. #!/bin/bash)
-    -e ENCODING   add an encoding line
-    -s SIGNATURE  add a signature line to follow the (c) name
+positional arguments:
+  FILE           specify files in which to insert licenses
 
-Always put multi-word option arguments in quotes!
+optional arguments:
+  -h, --help     show this help message and exit
+  --version      show program's version number and exit
+  --list         return a list of available licenses
+  -l LICENSE     set which license to use
+  -t LICTYPE     set license type
+  -c COMMENT     set the comment string
+  -C COMMENTEND  set the comment end string
+  -d PROGDESC    set a program description line
+  -n CNAME       set the copyright name
+  -y CYEAR       set the copyright year (default: current year)
+  -p PREFIX      set the first line (e.g. '#!/bin/bash)'
+  -e ENCODING    add an encoding line
+  -s SIGNATURE   add a signature line to follow the (c) name
 
-    ==== Available license modules: ====
-    
-    apache    : The Apache 2.0 license
-    bsd2      : The Berkeley Software Distribution license v2
-    bsd3      : The Berkeley Software Distribution license v3
-    gfdl1-2   : The GNU Free Documentation License v1.2
-    gfdl1-3   : The GNU Free Documentation License v1.3
-    gpl2      : The GNU General Public License v2+
-    gpl3      : The Gnu General Public License v3
-    lgpl2     : The GNU Library General Public License v2+
-    lgpl2-1   : The GNU Library General Public License v2.1+
-    lgpl3     : The GNU Library General Public License v3
-    mit       : The MIT License
+Always put multi-word option arguments in single quotes! Use
+~/.config/licins.conf for persistent options.
+```
+
+```
+==== Available license modules: ====
+
+apache    : The Apache 2.0 license
+bsd2      : The Berkeley Software Distribution license v2
+bsd3      : The Berkeley Software Distribution license v3
+gfdl1-2   : The GNU Free Documentation License v1.2
+gfdl1-3   : The GNU Free Documentation License v1.3
+gpl2      : The GNU General Public License v2+
+gpl3      : The Gnu General Public License v3
+lgpl2     : The GNU Library General Public License v2+
+lgpl2-1   : The GNU Library General Public License v2.1+
+lgpl3     : The GNU Library General Public License v3
+mit       : The MIT License
+```
 
 # EXAMPLES
     licins -l mit -n 'Dan Persons' -p '#!/usr/bin/env python' *.py

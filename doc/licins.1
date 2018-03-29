@@ -3,15 +3,19 @@
 licins - Insert software licenses into source code.
 
 .SH SYNOPSIS
-.B licins [-l LICENSE] [-t LICTYPE] [-c COMMENT] [-C COMMENTEND] [-d PROGDESC] [-n CNAME] [-p PREFIX] [-e ENCODING] [-s SIGNATURE] files
+.B licins [OPTIONS] [FILES]
 
 .SH DESCRIPTION
 \fBlicins\fP is a tool for inserting commented software licenses into source code. It comes with modules for popular open source licenses. Use ~/.config/licins.conf for persistent options. Licenses are inserted at the beginning of files, but after any line starting with #!.
 
 .SH OPTIONS
 
-    \fB--version\fP     show program's version number and exit
+  positional arguments:
+    \fBFILE\fR           specify files in which to insert licenses
+
+  optional arguments:
     \fB-h\fP, \fB--help\fP    show this help message and exit
+    \fB--version\fP     show program's version number and exit
     \fB--list\fP        return a list of available licenses
     \fB-l \fILICENSE\fR    set which license to use
     \fB-t \fILICTYPE\fR    set license type (header|full, default=header)
@@ -24,7 +28,8 @@ licins - Insert software licenses into source code.
     \fB-e \fIENCODING\fR   add an encoding line
     \fB-s \fISIGNATURE\fR  add a signature line to follow the (c) name
 
-Always put multi-word option arguments in single quotes!
+Always put multi-word option arguments in quotes!
+Use ~/.config/licins.conf for persistent options.
 
 .SH EXAMPLES
     licins -l mit -n 'Dan Persons' -p '#!/usr/bin/env python' *.py
