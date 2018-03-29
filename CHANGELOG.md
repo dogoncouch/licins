@@ -1,7 +1,7 @@
 # Change log
 Change log for [licins](https://github.com/dogoncouch/licins)
 
-## [Unreleased]
+## [1.1] 2018-03-29
 ### Fixed
 - Fix bug with year
 
@@ -10,5 +10,5 @@ Change log for [licins](https://github.com/dogoncouch/licins)
 - Append newline to hashbangs
 - Python 3 compatibility
 
-## [1.0] 04-01-2017
+## [1.0] 2017-04-01
 - First release
