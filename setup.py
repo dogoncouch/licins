@@ -33,20 +33,31 @@ Options
 
 ::
     
-    --version     show program's version number and exit
-    -h, --help    show this help message and exit
-    --list        return a list of available licenses
-    -l LICENSE    set which license to use
-    -t LICTYPE    set license type (header|full, default=header)
-    -c COMMENT    set the comment string (default='# ')
-    -c COMMENTEND set the comment end string
-    -d PROGDESC   set a program description line
-    -n CNAME      set the copyright name
-    -p PREFIX     set the first line (e.g. #!/bin/bash)
-    -e ENCODING   add an encoding line
-    -s SIGNATURE  add a signature line to follow the (c) name
+    usage: licins [-h] [--version] [--list] [-l LICENSE] [-t LICTYPE]
+                  [-c COMMENT] [-C COMMENTEND] [-d PROGDESC] [-n CNAME]
+                  [-y CYEAR] [-p PREFIX] [-e ENCODING] [-s SIGNATURE]
+                  [FILE [FILE ...]]
 
-Always put multi-word option arguments in single quotes!
+    positional arguments:
+      FILE           specify files in which to insert licenses
+
+    optional arguments:
+      -h, --help     show this help message and exit
+      --version      show program's version number and exit
+      --list         return a list of available licenses
+      -l LICENSE     set which license to use
+      -t LICTYPE     set license type
+      -c COMMENT     set the comment string
+      -C COMMENTEND  set the comment end string
+      -d PROGDESC    set a program description line
+      -n CNAME       set the copyright name
+      -y CYEAR       set the copyright year (default: current year)
+      -p PREFIX      set the first line (e.g. '#!/bin/bash)'
+      -e ENCODING    add an encoding line
+      -s SIGNATURE   add a signature line to follow the (c) name
+
+    Always put multi-word option arguments in single quotes!
+    Use ~/.config/licins.conf for persistent options.
 
 ::
 
@@ -80,7 +91,7 @@ from LicIns import __version__
 
 ourdata = [(join(prefix, 'share/man/man1'), ['doc/licins.1']),
         (join(prefix, 'share/doc/licins'), ['README.md', 'LICENSE',
-            'CHANGELOG']),
+            'CHANGELOG.md']),
         (join(prefix, 'share/doc/licins/licenses'), ['doc/licenses/LGPL-3',
             'doc/licenses/LGPL-2', 'doc/licenses/LGPL-2.1',
             'doc/licenses/GPL-3', 'doc/licenses/Apache-2.0',
