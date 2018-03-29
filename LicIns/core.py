@@ -23,16 +23,14 @@
 # SOFTWARE.
 
 import os
-import sys
+from sys import exit
 from shutil import copyfile
-import string
-import datetime
+from datetime import datetime
 try:
     from configparser import ConfigParser
 except ImportError:
     from ConfigParser import ConfigParser
-from optparse import OptionParser
-from optparse import OptionGroup
+from argparse import ArgumentParser
 
 import LicIns.licenses
 from LicIns import __version__
@@ -49,13 +47,11 @@ class LicInsCore:
         self.signature = ''
         self.comment = ''
         self.commentend = ''
-        self.options = None
-        self.option_parser = OptionParser(
-                usage = ("Usage: %prog [options] filename"),
-                version = "%prog" + '-' + str(__version__),
+        self.args = None
+        self.arg_parser = ArgumentParser(
                 epilog="Always put multi-word option arguments in single quotes!\nUse ~/.config/licins.conf for persistent options.")
 
-    def config_options(self):
+    def get_options(self):
         """Set config options"""
         myconf = os.getenv("HOME") + '/.config/licins.conf'
         if not os.path.isfile(myconf):
@@ -68,55 +64,58 @@ class LicInsCore:
                     copyfile('licins.conf', myconf)
                 except IOError:
                     print('Error: ~/.config/licins.conf cannot be found.')
-                    sys.exit(0)
+                    exit(0)
         config = ConfigParser()
         config.read(myconf)
-        self.option_parser.add_option("--list",
-                action="callback",
-                callback=self.list_licenses,
+        self.arg_parser.add_argument("--list",
+                action="store_true", dest='list_licenses',
                 help="return a list of available licenses")
-        self.option_parser.add_option("-l",
+        self.arg_parser.add_argument("-l",
                 action="store",
                 dest="license", default=config.get("licins", "license"),
                 help="set which license to use")
-        self.option_parser.add_option("-t",
+        self.arg_parser.add_argument("-t",
                 action="store",
                 dest="lictype", default=config.get("licins", "lictype"),
                 help="set license type")
-        self.option_parser.add_option("-c",
+        self.arg_parser.add_argument("-c",
                 action="store",
                 dest="comment", default=config.get("licins", "comment"),
                 help="set the comment string")
-        self.option_parser.add_option("-C",
+        self.arg_parser.add_argument("-C",
                 action="store",
-                dest="commentend", default=config.get("licins", "commentend"),
+                dest="commentend", default=config.get(
+                    "licins", "commentend"),
                 help="set the comment end string")
-        self.option_parser.add_option("-d",
+        self.arg_parser.add_argument("-d",
                 action="store",
                 dest="progdesc", default=config.get("licins", "progdesc"),
                 help="set a program description line")
-        self.option_parser.add_option("-n",
+        self.arg_parser.add_argument("-n",
                 action="store",
                 dest="cname", default=config.get("licins", "cname"),
                 help="set the copyright name")
-        self.option_parser.add_option("-y",
+        self.arg_parser.add_argument("-y",
                 action="store",
                 dest="cyear", default=False,
                 help="set the copyright year (default: current year)")
-        self.option_parser.add_option("-p",
+        self.arg_parser.add_argument("-p",
                 action="store",
                 dest="prefix", default=config.get("licins", "prefix"),
                 help="set the first line (e.g. '#!/bin/bash)'")
-        self.option_parser.add_option("-e",
+        self.arg_parser.add_argument("-e",
                 action="store",
                 dest="encoding", default=config.get("licins", "encoding"),
                 help="add an encoding line")
-        self.option_parser.add_option("-s",
+        self.arg_parser.add_argument("-s",
                 action="store",
                 dest="signature", default=config.get("licins", "signature"),
                 help="add a signature line to follow the (c) name")
+        self.arg_parser.add_argument("files",
+                metavar="FILE", nargs="*",
+                help="specify files in which to insert licenses")
         
-        self.options, self.args = self.option_parser.parse_args(sys.argv[1:])
+        self.args = self.arg_parser.parse_args()
 
     # License modules:
     def list_licenses(self, *args):
@@ -125,7 +124,7 @@ class LicInsCore:
         for lic in sorted(self.license_modules):
             print(self.license_modules[lic].name.ljust(10) + \
                     ': ' + self.license_modules[lic].desc)
-        sys.exit(0)
+        exit(0)
     
     def load_licenses(self):
         """Load license module(s)"""
@@ -138,22 +137,25 @@ class LicInsCore:
     def insert(self):
         """Prep the header and add it to files"""
         self.load_licenses()
-        self.config_options()
-        if self.options.cyear:
-            ouryear = self.options.cyear
+        self.get_options()
+        if self.args.list_licenses:
+            self.list_licenses()
+            exit(0)
+        if self.args.cyear:
+            ouryear = self.args.cyear
         else:
-            ouryear = str(datetime.datetime.now().year)
-        for job in self.args:
-            thisjob = self.license_modules[self.options.license]
-            thisjob.prep(lictype = self.options.lictype,
-                    comment = self.options.comment,
-                    commentend = self.options.commentend,
-                    progdesc = self.options.progdesc,
-                    prefix = self.options.prefix,
-                    encoding = self.options.encoding,
-                    cname = self.options.cname,
+            ouryear = str(datetime.now().year)
+        for job in self.args.files:
+            thisjob = self.license_modules[self.args.license]
+            thisjob.prep(lictype = self.args.lictype,
+                    comment = self.args.comment,
+                    commentend = self.args.commentend,
+                    progdesc = self.args.progdesc,
+                    prefix = self.args.prefix,
+                    encoding = self.args.encoding,
+                    cname = self.args.cname,
                     cyear = ouryear,
-                    signature = self.options.signature)
+                    signature = self.args.signature)
             thisjob.write_final(job)
 
 def main():
