@@ -69,6 +69,11 @@ class LicenseModule:
 
     def write_final(self, inputfile):
         """Insert the formatted license into a file"""
+        inputfile_dirname = os.path.dirname(inputfile)
+        if not os.path.lexists(inputfile_dirname):
+            print(f'Error: directory "{inputfile_dirname}" or one of its parents does not exists')
+            exit(-1)
+
         if not os.path.isfile(inputfile):
             touchit = open(inputfile, 'w')
             touchit.write('\n')
